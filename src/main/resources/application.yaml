@@ -1,0 +1,39 @@
+server:
+  servlet:
+    context-path: /purchase/api/v1
+  port: 5004
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: purchase-service
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        acks: 1
+        spring:
+          json:
+            add:
+              type:
+                headers: false
+    consumer:
+      group-id: "order-consumer"
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+
+
+kafka-consumer-properties: "spring.json.value.default.type=ru.iot.purchase.dto.consumer.OrderEventDto"
+
+kafka-topics:
+  receive-order: orders
+  send-order-status: order-statuses
