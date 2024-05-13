@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import ru.iot.purchase.dto.consumer.OrderEventDto;
+import ru.iot.purchase.service.OrderService;
 
 @Slf4j
 @Service
@@ -14,6 +15,8 @@ public class KafkaConsumer {
     private final String orderTopic = "${kafka-topics.receive-order}";
     private final String consumerGroupId = "${spring.kafka.consumer.group-id}";
 
+    private final OrderService orderService;
+
     @KafkaListener(
             topics = orderTopic,
             groupId = consumerGroupId,
@@ -21,6 +24,7 @@ public class KafkaConsumer {
     )
     public void acceptOrderEvent(OrderEventDto orderEvent) {
         log.info("Сообщение получено {}", orderEvent);
+        orderService.processOrder(orderEvent);
     }
 
 }

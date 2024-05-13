@@ -37,3 +37,10 @@ kafka-consumer-properties: "spring.json.value.default.type=ru.iot.purchase.dto.c
 kafka-topics:
   receive-order: orders
   send-order-status: order-statuses
+
+
+mock-api-url:
+  yandex: 182.20.0.5:6003
+  sber: 182.20.0.6:6002
+  samokat: 182.20.0.7:6001
+  ozon: 182.20.0.8:6000
