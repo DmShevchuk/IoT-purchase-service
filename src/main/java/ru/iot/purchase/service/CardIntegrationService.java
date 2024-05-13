@@ -30,7 +30,7 @@ public class CardIntegrationService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<BalanceDto> requestEntity = new HttpEntity<>(balanceDto, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Void.class);
+        ResponseEntity<Void> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Void.class);
 
         return responseEntity.getStatusCode() == HttpStatus.OK;
     }
