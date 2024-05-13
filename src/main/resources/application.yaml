@@ -40,7 +40,7 @@ kafka-topics:
 
 
 mock-api-url:
-  yandex: 182.20.0.5:6003
-  sber: 182.20.0.6:6002
-  samokat: 182.20.0.7:6001
-  ozon: 182.20.0.8:6000
+  yandex: http://182.20.0.5:6003/yandex/api/v1/products
+  sber: http://182.20.0.6:6002/sber/api/v1/products
+  samokat: http://182.20.0.7:6001/samokat/api/v1/products
+  ozon: http://182.20.0.8:6000/ozon/api/v1/products
