@@ -23,7 +23,7 @@ public class KafkaConsumer {
             properties = "${kafka-consumer-properties}"
     )
     public void acceptOrderEvent(OrderEventDto orderEvent) {
-        log.info("Сообщение получено {}", orderEvent);
+        log.info("Получено сообщение о заказе {}", orderEvent);
         orderService.processOrder(orderEvent);
     }
 

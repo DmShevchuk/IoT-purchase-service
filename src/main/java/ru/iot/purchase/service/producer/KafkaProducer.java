@@ -15,7 +15,7 @@ public class KafkaProducer {
 
     public void sendOrderStatusEvent(OrderStatusDto orderStatusDto) {
         kafkaSender.sendOrderStatus(orderStatusDto);
-        log.info("Отправка сообщения {}", orderStatusDto);
+        log.info("Отправка сообщения об обновлении статуса заказа {}", orderStatusDto);
     }
 
 }
