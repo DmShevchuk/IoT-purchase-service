@@ -1,6 +1,7 @@
 package ru.iot.purchase.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.iot.purchase.domain.OrderStatus;
@@ -10,6 +11,7 @@ import ru.iot.purchase.service.producer.KafkaSender;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -36,7 +38,12 @@ public class OrderService {
         double price = -1.0;
         int idx = 0;
         for (String url : apis) {
-            double currentPrice = deliveryService.getProductCost(orderEventDto.getProducts(), url);
+            double currentPrice = 0.0;
+            try {
+                currentPrice = deliveryService.getProductCost(orderEventDto.getProducts(), url);
+            } catch (Throwable throwable) {
+                log.error("Не получилось");
+            }
             if (currentPrice <= price) {
                 price = currentPrice;
             }
