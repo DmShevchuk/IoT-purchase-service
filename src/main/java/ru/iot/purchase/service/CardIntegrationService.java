@@ -20,7 +20,7 @@ public class CardIntegrationService {
     public boolean payForOrder(UUID clientId, Double sum) {
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "http://example.com/api/checkBalance";
+        String url = "http://182.20.0.24:8088/card/api/v1/cards";
 
         BalanceDto balanceDto = new BalanceDto();
         balanceDto.setClientId(clientId);
