@@ -31,7 +31,7 @@ public class DeliveryIntegrationService {
 
         String requestBody;
         try {
-            requestBody = "{\"product_names\": "+ objectMapper.writeValueAsString(products) +" }";
+            requestBody = objectMapper.writeValueAsString(products);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
